@@ -18,7 +18,7 @@ use uuid::Uuid;
 use app::{Action, App, ChatLine};
 use message::ClientMsg;
 
-const DEFAULT_SERVER: &str = "ws://127.0.0.1:8080";
+const DEFAULT_SERVER: &str = "ws://127.0.0.1:55001";
 
 #[tokio::main]
 async fn main() -> io::Result<()> {
