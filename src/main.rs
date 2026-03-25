@@ -6,7 +6,7 @@ mod ws;
 use std::{env, io};
 
 use crossterm::{
-    event::{Event, EventStream},
+    event::{Event, EventStream, KeyEventKind},
     execute,
     terminal::{disable_raw_mode, enable_raw_mode, EnterAlternateScreen, LeaveAlternateScreen},
 };
@@ -71,7 +71,7 @@ async fn main() -> io::Result<()> {
         tokio::select! {
             maybe_event = events.next() => {
                 match maybe_event {
-                    Some(Ok(Event::Key(key))) => {
+                    Some(Ok(Event::Key(key))) if key.kind == KeyEventKind::Press => {
                         match app.handle_key(key) {
                             Action::Quit => break 'main,
                             Action::Send(msg) => {
